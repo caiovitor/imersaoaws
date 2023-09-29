@@ -47,6 +47,7 @@ if aws iam get-role --role-name $role_name $profile &>/dev/null; then
 else
     echo "Criando role-acesso-ssm"
     /bin/bash criar_role_ssm.sh
+    sleep 15
 fi
 
 #Criar instancias
