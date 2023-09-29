@@ -28,9 +28,7 @@ else
 fi
 
 #Verificar se a rule já existe, se não existe criar
-rule_ok=$(aws ec2 describe-security-group-rules --filters Name="group-id",Values="'$security_group_id'" --output text  \
---query 'SecurityGroupRules[?CidrIpv4==`'$my_public_ip'`].FromPort' $profile)
-
+rule_ok=$(aws ec2 describe-security-group-rules --filters Name="group-id",Values="'$security_group_id'" --output text --query 'SecurityGroupRules[?CidrIpv4==`'$my_public_ip'/32`].FromPort' $profile)
 if [ -z $rule_ok ]
 then
   echo "Criando security-group-rule"
